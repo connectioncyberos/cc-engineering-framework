@@ -84,6 +84,21 @@ Analisando o conteúdo já definido para Foundation ("artefato que define identi
 
 **Status:** Planned — a confirmar com o usuário antes de escrever
 
+## DP-006 — Governança de Prompts e Scripts
+
+**Objetivo:** dar um local e um formato oficial para prompts de IA e scripts de automação usados no ecossistema, antes de o primeiro Engine de IA (CS-008+) ser construído.
+
+### Entregáveis
+
+- STD-0007 — Prompt & Script Governance Standard (0.1.0, Draft) — **Done**. Cobre local de armazenamento (`features/<engine>/prompts/` no produto, `scripts/` para automação), formato mínimo (front-matter YAML) e metadados obrigatórios. Critérios de avaliação/aprovação ficam explicitamente fora de escopo nesta versão.
+- STD-0003 — ajuste na tabela de tipos oficiais, adicionando `PR` (Prompt) e `SCR` (Script) — **Done**.
+
+### Dívida futura registrada
+
+STD-0007 sobe para 0.2.0 (MINOR, expansão compatível, conforme STD-0002) quando o primeiro Engine real (Offer Engine, candidato natural em CS-008+) tiver sua própria Specification — nesse momento, incorporar os critérios reais de avaliação (qualidade, custo, segurança) antes de um prompt entrar em produção.
+
+**Status:** Done (versão 0.1.0) — 0.2.0 depende de CS-008+ ter uma Specification real.
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -94,3 +109,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 |------|-----------|
 | 2026-07-07 | Versão inicial (DP-001 a DP-003 planejados) |
 | 2026-07-09 | DP-001/DP-002 marcados como concluídos; DP-003 reconciliado com a execução real; DP-004 e DP-005 adicionados |
+| 2026-07-10 | DP-006 adicionado: STD-0007 (Prompt & Script Governance Standard) criado, STD-0003 ajustado com tipos PR/SCR |

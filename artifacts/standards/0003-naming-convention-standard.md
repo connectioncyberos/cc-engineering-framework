@@ -9,7 +9,7 @@ architect: ChatGPT
 project: ConnectionCyber Engineering Framework
 repository: cc-engineering-framework
 created_at: 2026-07-08
-updated_at: 2026-07-08
+updated_at: 2026-07-10
 ---
 
 # STD-0003 — Naming Convention Standard
@@ -40,6 +40,8 @@ Exemplos: `STD-0001`, `FND-0001`, `SPC-0001`, `ADR-0001`.
 | JNL | Journal |
 | BLP | Blueprint |
 | MDL | Model |
+| PR | Prompt |
+| SCR | Script |
 
 ## 4. Arquivos Markdown
 
@@ -65,3 +67,4 @@ Utilizar Conventional Commits, como `docs: add versioning standard`.
 | Versão | Data | Alteração | Autor |
 |--------|------|-----------|-------|
 | 0.1.0 | 2026-07-08 | Primeira versão Draft | Joaquim Mario Soares Coelho |
+| 0.1.0 | 2026-07-10 | Adicionados tipos PR (Prompt) e SCR (Script) à tabela de tipos oficiais (ver STD-0007) | Joaquim Mario Soares Coelho |
