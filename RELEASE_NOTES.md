@@ -18,4 +18,4 @@ Inicia oficialmente a camada Foundation do CCEF.
 
 ## Próximo pacote
 
-FP-002 — Engineering Bible, Engineering Principles e Business Philosophy.
+FP-002 — Product Constitution, STD-0006 (Engineering Principles) e Engineering Handbook (por ondas). Engineering Bible foi descontinuado como artefato próprio — ver DP-003.1 em ROADMAP.md.

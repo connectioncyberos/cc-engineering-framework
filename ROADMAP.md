@@ -48,14 +48,19 @@ O plano original previa FND-0001 Project Charter, FND-0002 Engineering Bible, FN
 - `0002-mission.md` — **Done** (não previsto no plano original; adicionado por necessidade prática)
 - `0003-vision.md` — **Done** (equivale ao antigo FND-0004 do plano original)
 - Product Constitution — **Planned**
-- Engineering Bible — **Planned** (bloqueado por DP-003.1)
-- Engineering Handbook — **Planned** (bloqueado por DP-003.1; a escrever por ondas — só capítulos com conteúdo real agora: Introdução, Filosofia, Specifications, ADR, Versionamento. História/Evolução/Roadmap ficam como stub até haver o que registrar)
+- Engineering Handbook — **Planned** (a escrever por ondas — só capítulos com conteúdo real agora: Introdução, Filosofia, Specifications, ADR, Versionamento. História/Evolução/Roadmap ficam como stub até haver o que registrar)
+- ~~Engineering Bible~~ — descontinuado, ver DP-003.1
+- STD-0006 — Engineering Principles — **Planned** (substitui o que seria parte da Bible)
 
-### DP-003.1 — Pré-requisito antes de Bible/Handbook
+### DP-003.1 — Resolução: Handbook vs. Bible vs. Principles (2026-07-09)
 
-Definir a fronteira exclusiva entre Engineering Handbook (índice/navegação), Engineering Bible (filosofia narrada) e Engineering Principles (lista prescritiva) antes de escrever qualquer um dos três, para não duplicar conteúdo.
+Analisando o conteúdo já definido para Foundation ("artefato que define identidade, propósito, princípios e base estratégica" — STD-0001), o Engineering Bible tal como proposto seria redundante com o que Mission, Vision e Product Constitution já cobrem. Resolução:
 
-**Status:** In Progress
+- **Engineering Handbook** — mantido. É o índice/navegação único do ecossistema (mapa de Specifications, dependências, roadmap, histórico). Não contém conteúdo completo, só aponta para os artefatos canônicos.
+- **Engineering Bible** — descontinuado como artefato próprio. Seu conteúdo pretendido (filosofia narrada) já é coberto por Mission, Vision e Product Constitution.
+- **Engineering Principles** — deixa de ser parte do Handbook e passa a ser um Standard (`STD-0006 — Engineering Principles`), já que é uma lista prescritiva de regras, não narrativa.
+
+**Status:** Resolvido
 
 ## DP-004 — Delivery Package History
 
@@ -63,21 +68,21 @@ Definir a fronteira exclusiva entre Engineering Handbook (índice/navegação), 
 
 ### Entregáveis
 
-- Pasta `releases/`
-- `releases/Release-0001.md` (retroativo, cobrindo DP-001 a DP-003)
-- Convenção: cada nova entrega gera seu próprio `Release-000X.md`
+- Pasta `releases/` — **Done**
+- `releases/Release-0001.md` (retroativo, cobrindo DP-001, DP-002, FP-001 e o Housekeeping da Fase A) — **Done**
+- Convenção: cada nova entrega gera seu próprio `Release-000X.md`; `EXECUTE.md`/`VALIDATION.md`/`RELEASE_NOTES.md` na raiz sempre descrevem o pacote **em andamento**, e são arquivados em `releases/` quando o pacote fecha
 
-**Status:** Planned
+**Status:** Done
 
 ## DP-005 — Primeira Specification real
 
-**Objetivo:** validar o processo de Specification na prática, com um caso real.
+**Objetivo:** validar o processo de Specification na prática, com um caso real e imediato.
 
 ### Entregáveis
 
-- SPC-0001 (candidata: especificação do Offer Engine ou do módulo de Publishing multi-plataforma do Commerce Studio)
+- SPC-0001 — Especificação da Persistência do Workspace (CS-007), cobrindo Server Action, validação Zod, RLS/multi-tenant e critério de aceite — candidata natural por já ser o próximo trabalho em `cc-commerce-studio`
 
-**Status:** Planned
+**Status:** Planned — a confirmar com o usuário antes de escrever
 
 ## Dependência cruzada
 
