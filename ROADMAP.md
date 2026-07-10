@@ -80,9 +80,9 @@ Analisando o conteúdo já definido para Foundation ("artefato que define identi
 
 ### Entregáveis
 
-- SPC-0001 — Especificação da Persistência do Workspace (CS-007), cobrindo Server Action, validação Zod, RLS/multi-tenant e critério de aceite — candidata natural por já ser o próximo trabalho em `cc-commerce-studio`
+- SPC-0001 — Especificação da Persistência do Workspace (CS-007), cobrindo Server Action, validação Zod, RLS/multi-tenant e critério de aceite — **Done**. Implementação em `cc-commerce-studio` (CS-007) concluída e testada end-to-end.
 
-**Status:** Planned — a confirmar com o usuário antes de escrever
+**Status:** Done
 
 ## DP-006 — Governança de Prompts e Scripts
 
@@ -110,3 +110,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-07 | Versão inicial (DP-001 a DP-003 planejados) |
 | 2026-07-09 | DP-001/DP-002 marcados como concluídos; DP-003 reconciliado com a execução real; DP-004 e DP-005 adicionados |
 | 2026-07-10 | DP-006 adicionado: STD-0007 (Prompt & Script Governance Standard) criado, STD-0003 ajustado com tipos PR/SCR |
+| 2026-07-10 | DP-005 reconciliado para Done: SPC-0001 confirmada e implementada em CS-007 |

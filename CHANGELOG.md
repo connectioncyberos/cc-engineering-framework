@@ -12,6 +12,10 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 - STD-0003 — tipos oficiais `PR` (Prompt) e `SCR` (Script) adicionados à tabela de tipos.
 - ROADMAP.md: DP-006 (Governança de Prompts e Scripts) adicionado.
 
+### Fixed
+
+- ROADMAP.md: DP-005 reconciliado para Done (SPC-0001 confirmada e implementada em CS-007).
+
 ## [0.1.0] - 2026-07-07
 
 ### Added
