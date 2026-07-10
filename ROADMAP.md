@@ -99,6 +99,20 @@ STD-0007 sobe para 0.2.0 (MINOR, expansão compatível, conforme STD-0002) quand
 
 **Status:** Done (versão 0.1.0) — 0.2.0 depende de CS-008+ ter uma Specification real.
 
+## DP-007 — Specification do módulo Products
+
+**Objetivo:** especificar o próximo módulo do produto (CS-008), com prioridade definida por dependência real de schema, não por preferência.
+
+### Entregáveis
+
+- SPC-0002 — Módulo Products (CS-008) — **Done**. Auditoria confirmou que `products` (tabela + RLS) já existe e já está aplicada desde a migration 002 (CS-007) — sem achado bloqueante. Trabalho restante é só camada de feature + UI.
+
+### Prioridade de módulos (CS-008+) — decisão registrada
+
+Ordem definida por dependência de schema, verificada nas migrations reais (não suposição): Products (schema/RLS prontos) → Brands (exige schema novo + migração aditiva de `brand_id` em `products`) → Offer Engine (consome os dois; primeiro caso real de STD-0007).
+
+**Status:** Done
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -111,3 +125,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-09 | DP-001/DP-002 marcados como concluídos; DP-003 reconciliado com a execução real; DP-004 e DP-005 adicionados |
 | 2026-07-10 | DP-006 adicionado: STD-0007 (Prompt & Script Governance Standard) criado, STD-0003 ajustado com tipos PR/SCR |
 | 2026-07-10 | DP-005 reconciliado para Done: SPC-0001 confirmada e implementada em CS-007 |
+| 2026-07-10 | DP-007 adicionado: SPC-0002 (Products) escrita; prioridade de módulos CS-008+ decidida por dependência de schema |
