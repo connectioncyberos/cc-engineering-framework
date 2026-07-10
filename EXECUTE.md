@@ -1,44 +1,26 @@
-# DP-002 — Engineering Standards
+# FP-001 — Foundation Pack 001
 
 ## Objetivo
 
-Aplicar o pacote DP-002 ao repositório `cc-engineering-framework`.
+Aplicar os primeiros artefatos fundacionais ao repositório `cc-engineering-framework`.
 
-## Pré-requisito
+## Artefatos incluídos
 
-Estar dentro do repositório local:
+- FND-0001 — Project Charter
+- FND-0002 — Mission
+- FND-0003 — Vision
+- VALIDATION.md
+- RELEASE_NOTES.md
+
+## Comandos
 
 ```powershell
 cd C:\Projetos\connectioncyber\cc-engineering-framework
-```
-
-## Validação antes da cópia
-
-```powershell
-git status
-```
-
-O ideal é aparecer:
-
-```text
-nothing to commit, working tree clean
-```
-
-## Após copiar os arquivos
-
-Execute:
-
-```powershell
 git status
 git add .
 git status
-git commit -m "docs: add initial engineering standards"
+git commit -m "docs: add foundation pack 001"
 git push
-```
-
-## Validação final
-
-```powershell
 git log --oneline -5
 git status
 ```
