@@ -23,6 +23,14 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 - SPC-0003 — Módulo Brands (CS-009): schema novo (`brands`), migração aditiva em `products` (`brand_id` nullable), RLS no mesmo padrão de `products_member_all`.
 - ROADMAP.md: DP-008 adicionado.
 
+## [Unreleased] - 2026-07-10 (3)
+
+### Added
+
+- SPC-0004 — Offer Engine (CS-010): schema novo (`offers`), achado sobre ausência de provedor de IA registrado, primeiro Prompt (`PR-0001`).
+- STD-0007 expandido para 0.2.0: contrato de entrada/saída, ciclo de vida do prompt, checklist de revisão.
+- ROADMAP.md: DP-009 adicionado.
+
 ## [0.1.0] - 2026-07-07
 
 ### Added

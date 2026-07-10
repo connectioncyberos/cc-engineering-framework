@@ -123,6 +123,17 @@ Ordem definida por dependência de schema, verificada nas migrations reais (não
 
 **Status:** Done
 
+## DP-009 — Specification do Offer Engine e expansão do STD-0007
+
+**Objetivo:** especificar o primeiro Engine de IA (CS-010) e usar esse caso real para cumprir a dívida já registrada em DP-006 (expansão do STD-0007 para 0.2.0).
+
+### Entregáveis
+
+- SPC-0004 — Offer Engine (CS-010) — **Done**. Auditoria confirmou schema novo necessário (`offers`) e nenhum provedor de IA configurado (achado não-bloqueante para o módulo, bloqueante apenas para a chamada real de IA).
+- STD-0007 — expandido para 0.2.0 — **Done**. Adicionado contrato de entrada/saída, ciclo de vida do prompt (Draft/Ready/Active/Deprecated) e checklist de revisão. Critérios quantitativos (custo/latência/segurança) adiados para 0.3.0, quando houver provedor de IA real escolhido.
+
+**Status:** Done
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -136,4 +147,5 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | DP-006 adicionado: STD-0007 (Prompt & Script Governance Standard) criado, STD-0003 ajustado com tipos PR/SCR |
 | 2026-07-10 | DP-005 reconciliado para Done: SPC-0001 confirmada e implementada em CS-007 |
 | 2026-07-10 | DP-008 adicionado: SPC-0003 (Brands) escrita, schema novo + migração aditiva em products |
+| 2026-07-10 | DP-009 adicionado: SPC-0004 (Offer Engine) escrita, STD-0007 expandido para 0.2.0 |
 | 2026-07-10 | DP-007 adicionado: SPC-0002 (Products) escrita; prioridade de módulos CS-008+ decidida por dependência de schema |
