@@ -16,6 +16,13 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 
 - ROADMAP.md: DP-005 reconciliado para Done (SPC-0001 confirmada e implementada em CS-007).
 
+## [Unreleased] - 2026-07-10 (2)
+
+### Added
+
+- SPC-0003 — Módulo Brands (CS-009): schema novo (`brands`), migração aditiva em `products` (`brand_id` nullable), RLS no mesmo padrão de `products_member_all`.
+- ROADMAP.md: DP-008 adicionado.
+
 ## [0.1.0] - 2026-07-07
 
 ### Added

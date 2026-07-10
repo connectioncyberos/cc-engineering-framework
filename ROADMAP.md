@@ -113,6 +113,16 @@ Ordem definida por dependência de schema, verificada nas migrations reais (não
 
 **Status:** Done
 
+## DP-008 — Specification do módulo Brands
+
+**Objetivo:** especificar o módulo Brands (CS-009), próximo na ordem confirmada em DP-007.
+
+### Entregáveis
+
+- SPC-0003 — Módulo Brands (CS-009) — **Done**. Auditoria confirmou que não existe tabela `brands` nem coluna `brand_id` em `products` — schema novo necessário, migração de `products` é aditiva (`brand_id` nullable, `on delete set null`), sem regressão em CS-008.
+
+**Status:** Done
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -125,4 +135,5 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-09 | DP-001/DP-002 marcados como concluídos; DP-003 reconciliado com a execução real; DP-004 e DP-005 adicionados |
 | 2026-07-10 | DP-006 adicionado: STD-0007 (Prompt & Script Governance Standard) criado, STD-0003 ajustado com tipos PR/SCR |
 | 2026-07-10 | DP-005 reconciliado para Done: SPC-0001 confirmada e implementada em CS-007 |
+| 2026-07-10 | DP-008 adicionado: SPC-0003 (Brands) escrita, schema novo + migração aditiva em products |
 | 2026-07-10 | DP-007 adicionado: SPC-0002 (Products) escrita; prioridade de módulos CS-008+ decidida por dependência de schema |
