@@ -47,7 +47,7 @@ O plano original previa FND-0001 Project Charter, FND-0002 Engineering Bible, FN
 - `0001-project-charter.md` — **Done**
 - `0002-mission.md` — **Done** (não previsto no plano original; adicionado por necessidade prática)
 - `0003-vision.md` — **Done** (equivale ao antigo FND-0004 do plano original)
-- Product Constitution — **Planned**
+- `0004-product-constitution.md` — **Done** (ver DP-010, item 6). Diferente de Charter/Mission/Vision (sobre o Framework), este é sobre o produto Commerce Studio: propósito, público-alvo, não escopo permanente e princípios não negociáveis.
 - Engineering Handbook — **Planned** (a escrever por ondas — só capítulos com conteúdo real agora: Introdução, Filosofia, Specifications, ADR, Versionamento. História/Evolução/Roadmap ficam como stub até haver o que registrar)
 - ~~Engineering Bible~~ — descontinuado, ver DP-003.1
 - STD-0006 — Engineering Principles — **Done** (ver DP-010, item 5). 12 princípios extraídos da execução real do projeto (DP-001 a DP-010).
@@ -151,11 +151,11 @@ Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Market
 3. Promover `PR-0001` de `Ready` para `Active` (ciclo de vida do STD-0007). — **Concluído**. Versão 0.2.1 do prompt.
 4. Expandir `STD-0007` para 0.3.0 com critérios quantitativos reais (custo, latência, segurança), usando a integração real como caso concreto. — **Concluído**. Adicionados: custo de referência (Gemini 3.1 Flash-Lite, US$ 0,25/US$ 1,50 por 1M tokens), latência de referência, tratamento obrigatório de resposta vazia/bloqueada e de falha de rede/cota, campo `model_verified_at`. Código de `generateOfferCopy()`/`generateOfferCopyAction()` atualizado para cumprir esses critérios.
 5. Escrever `STD-0006 — Engineering Principles` (dívida de DP-003, nunca escrita). — **Concluído**. 12 princípios, cada um citando o caso real deste projeto que o originou.
-6. Escrever o Product Constitution (dívida de DP-003, nunca escrita).
+6. Escrever o Product Constitution (dívida de DP-003, nunca escrita). — **Concluído**. `FND-0004`, cobrindo propósito, público-alvo, não escopo permanente e 5 princípios não negociáveis do produto.
 7. Decidir com o usuário se testes automatizados e CI entram no escopo do MVP ou ficam de fora (hoje em Backlog, sem decisão).
 8. Consolidar um Release final do MVP (`releases/Release-000X.md`) marcando o fechamento desta fase.
 
-**Status:** In Progress — itens 1 a 5 concluídos; item 6 (Product Constitution) é o próximo passo.
+**Status:** In Progress — itens 1 a 6 concluídos. Falta o item 7 (decidir com o usuário se testes automatizados/CI entram no MVP) e o item 8 (Release final consolidando o MVP).
 
 ## Dependência cruzada
 
