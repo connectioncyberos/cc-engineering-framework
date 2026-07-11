@@ -55,6 +55,24 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 
 - Testes automatizados e CI ficam fora do escopo do MVP — backlog consciente (DP-010, item 7).
 
+## [Unreleased] - 2026-07-11
+
+### Added
+
+- SPC-0005 — Landing Page Engine (CS-011): schema novo (`landing_pages`), rota pública `/lp/[slug]` fora do grupo `(app)`, RLS com política adicional de select público restrita a `status = 'published'`.
+- ROADMAP.md: DP-011 adicionado e reconciliado para Done.
+
+## [Unreleased] - 2026-07-11 (2)
+
+### Added
+
+- ROADMAP.md: DP-012 adicionado — ordem de retomada dos módulos restantes decidida pelo usuário (Video Script Engine → Creative Engine → Analytics Engine), priorizando módulos sem dependência de conta/API externa nova.
+- SPC-0006 — Video Script Engine (CS-012): schema novo (`video_scripts`), segundo Prompt (`PR-0002`).
+
+### Changed
+
+- STD-0007 promovido de 0.3.0 (Draft) para **1.0.0 (Approved)**: PR-0002, de um Engine diferente (Video Script Engine), seguiu o Standard sem exigir nenhuma expansão nova — critério de aprovação da seção 6 cumprido.
+
 ## [0.1.0] - 2026-07-07
 
 ### Added

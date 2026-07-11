@@ -2,14 +2,14 @@
 id: STD-0007
 title: Prompt & Script Governance Standard
 category: Standard
-version: 0.3.0
-status: Draft
+version: 1.0.0
+status: Approved
 author: Joaquim Mario Soares Coelho
 architect: Claude
 project: ConnectionCyber Engineering Framework
 repository: cc-engineering-framework
 created_at: 2026-07-10
-updated_at: 2026-07-10
+updated_at: 2026-07-11
 ---
 
 # STD-0007 — Prompt & Script Governance Standard
@@ -119,12 +119,12 @@ Baseado na integração real de `PR-0001` com Gemini 3.1 Flash-Lite:
 
 ## 6. Critérios de Aprovação (desta versão do Standard)
 
-Esta versão (0.3.0) já cobre um ciclo completo (local → formato → contrato → ciclo de vida → critérios quantitativos), validado ponta a ponta em `PR-0001`. Permanece em Draft até um **segundo** prompt real, de um Engine diferente, seguir este Standard sem exigir nova expansão — isso confirma que os critérios generalizam e não são um caso particular do Offer Engine. Só então avança para `1.0.0`.
+Cumprido em 2026-07-11: `PR-0002` (Video Script Engine, CS-012) seguiu este Standard do início ao fim — mesmo formato de front-matter, mesmo ciclo de vida (Draft → Active), mesmo checklist de revisão (§4.7) e mesmos critérios quantitativos de custo/latência/segurança (§4.8) — sem exigir nenhuma expansão nova do Standard. Isso confirma que os critérios generalizam entre Engines diferentes (Offer Engine e Video Script Engine) e não eram um caso particular do primeiro caso real. Standard promovido de `0.3.0` (Draft) para `1.0.0` (Approved).
 
 ## 7. Roadmap de evolução
 
-- **1.0.0** — quando um segundo prompt real (de outro Engine, ex. Creative Engine) seguir este Standard sem necessidade de expansão.
-- Critérios para prompts multimodais (imagem/vídeo) ficam para quando houver um Engine real desse tipo (ver Não Escopo, seção 3) — não antes.
+- **1.0.0** — Concluído (2026-07-11): PR-0002 (Video Script Engine) seguiu este Standard sem necessidade de expansão.
+- Critérios para prompts multimodais (imagem/vídeo) ficam para quando houver um Engine real desse tipo (ver Não Escopo, seção 3) — candidato natural: Creative Engine, próximo módulo da ordem decidida em DP-012. Não antes.
 
 ## 8. Histórico de Alterações
 
@@ -133,3 +133,4 @@ Esta versão (0.3.0) já cobre um ciclo completo (local → formato → contrato
 | 0.1.0 | 2026-07-10 | Primeira versão Draft — local, formato e metadados mínimos | Joaquim Mario Soares Coelho |
 | 0.2.0 | 2026-07-10 | Contrato de entrada/saída, ciclo de vida do prompt e checklist de revisão, a partir do caso real SPC-0004 (Offer Engine, PR-0001) | Claude |
 | 0.3.0 | 2026-07-10 | Critérios quantitativos de custo/latência/segurança, tratamento de erro e campo `model_verified_at`, a partir da integração real de PR-0001 com Gemini 3.1 Flash-Lite | Claude |
+| 1.0.0 | 2026-07-11 | Promovido a Approved — PR-0002 (Video Script Engine) seguiu o Standard sem exigir nova expansão, confirmando que os critérios generalizam entre Engines diferentes | Claude |

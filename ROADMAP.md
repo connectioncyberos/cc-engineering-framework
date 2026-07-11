@@ -167,6 +167,22 @@ Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Market
 
 **Status:** Done
 
+## DP-012 — Ordem de retomada dos módulos restantes (decisão do usuário)
+
+**Objetivo:** registrar a decisão do usuário sobre a ordem de construção dos 7 módulos que ainda restam fora do escopo do MVP (DP-010), após CS-011.
+
+### Decisão (2026-07-11)
+
+Critério proposto por Claude e escolhido pelo usuário: priorizar módulos que não exigem nenhuma conta/API externa nova, reaproveitando só a infraestrutura já ativa (Supabase + Gemini). Ordem confirmada: **Video Script Engine → Creative Engine → Analytics Engine**. Isso altera a ordem original combinada (Creative Engine viria antes de Video Script Engine); Creative Engine provavelmente exige geração de imagem (API separada/billing), por isso foi adiado até ser auditado.
+
+### Entregáveis
+
+- SPC-0006 — Video Script Engine (CS-012) — **Done**. Auditoria confirmou reaproveitamento total da infraestrutura de IA já ativa (`generateOfferCopy()` como referência); nenhuma rota pública necessária (diferente do Landing Page Engine).
+- CS-012 testado end-to-end em `cc-commerce-studio`: roteiro real gerado via `PR-0002`/Gemini 3.1 Flash-Lite, salvo com sucesso.
+- STD-0007 promovido de 0.3.0 (Draft) para **1.0.0 (Approved)** — critério de aprovação da seção 6 cumprido: PR-0002, de um Engine diferente (Video Script Engine), seguiu o Standard sem exigir nenhuma expansão nova.
+
+**Status:** Done
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -189,3 +205,5 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | Decisão do usuário: testes automatizados/CI ficam fora do MVP (backlog consciente) |
 | 2026-07-10 | DP-010 fechado (Done); Release-0002 consolidado, MVP encerrado |
 | 2026-07-10 | DP-011 adicionado: SPC-0005 (Landing Page Engine) escrita, retomando os módulos fora do MVP |
+| 2026-07-11 | DP-012 adicionado: ordem de retomada decidida pelo usuário (Video Script Engine → Creative Engine → Analytics Engine); SPC-0006 (Video Script Engine) escrita |
+| 2026-07-11 | DP-012 fechado (Done): CS-012 testado end-to-end; STD-0007 promovido de 0.3.0 (Draft) para 1.0.0 (Approved) |
