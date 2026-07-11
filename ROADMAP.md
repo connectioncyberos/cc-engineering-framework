@@ -157,6 +157,16 @@ Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Market
 
 **Status:** Done — os 8 itens do plano de ação concluídos. MVP fechado: Workspace + Products + Brands + Offer Engine com IA real, STD-0006, FND-0004, decisão consciente sobre testes/CI, Release-0002 consolidado.
 
+## DP-011 — Specification do Landing Page Engine (retomada pós-MVP)
+
+**Objetivo:** especificar o primeiro dos 8 módulos que ficaram fora do escopo do MVP (DP-010), retomando a construção do produto.
+
+### Entregáveis
+
+- SPC-0005 — Landing Page Engine (CS-011) — **Done**. Auditoria revelou dois achados não bloqueantes: (1) rota pública não exige mudança de middleware, só ficar fora de `app/(app)/`; (2) RLS existente não cobre acesso público — nova política de select restrita a `status = 'published'` resolve sem enfraquecer o isolamento multi-tenant.
+
+**Status:** Done
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -178,3 +188,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | FND-0004 (Product Constitution) escrito — dívida de DP-003 fechada |
 | 2026-07-10 | Decisão do usuário: testes automatizados/CI ficam fora do MVP (backlog consciente) |
 | 2026-07-10 | DP-010 fechado (Done); Release-0002 consolidado, MVP encerrado |
+| 2026-07-10 | DP-011 adicionado: SPC-0005 (Landing Page Engine) escrita, retomando os módulos fora do MVP |
