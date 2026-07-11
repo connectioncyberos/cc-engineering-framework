@@ -2,7 +2,7 @@
 id: STD-0007
 title: Prompt & Script Governance Standard
 category: Standard
-version: 0.2.0
+version: 0.3.0
 status: Draft
 author: Joaquim Mario Soares Coelho
 architect: Claude
@@ -16,21 +16,22 @@ updated_at: 2026-07-10
 
 ## 1. Objetivo
 
-Definir onde prompts de IA e scripts de automação do ecossistema ConnectionCyber são armazenados, seu formato mínimo, os metadados obrigatórios, e — a partir desta versão (0.2.0) — o contrato de entrada/saída e o checklist de revisão que todo prompt precisa cumprir antes de ser considerado pronto para uso. Esta expansão foi feita a partir de um caso real (SPC-0004 — Offer Engine, `PR-0001`), não especulativamente.
+Definir onde prompts de IA e scripts de automação do ecossistema ConnectionCyber são armazenados, seu formato mínimo, os metadados obrigatórios, o contrato de entrada/saída, o ciclo de vida do prompt, e — a partir desta versão (0.3.0) — os critérios quantitativos reais (custo, latência, segurança) medidos contra um provedor de IA em produção. Esta expansão foi feita a partir de um caso real e completo: `PR-0001` (Offer Engine) ligado ao Gemini 3.1 Flash-Lite e testado end-to-end, não especulativamente.
 
 ## 2. Escopo
 
 - Prompts de IA usados pelos Engines de produto (Offer Engine, Creative Engine, Video Script Engine, etc.), definidos em `cc-commerce-studio/ROADMAP.md` (CS-008+).
 - Scripts de manutenção, automação e apoio ao desenvolvimento dos repositórios do ecossistema.
-- Contrato de entrada/saída e checklist de revisão de um prompt antes de uso (novo nesta versão).
+- Contrato de entrada/saída e checklist de revisão de um prompt antes de uso.
+- Critérios quantitativos de custo, latência e segurança de conteúdo, e tratamento de erro/indisponibilidade do provedor (novo nesta versão).
 
 ## 3. Não Escopo (ainda nesta versão)
 
-- Critérios quantitativos de custo, latência e segurança medidos contra um modelo real — dependem de um provedor de IA já escolhido e configurado, o que ainda não aconteceu (ver achado bloqueante em SPC-0004, seção 4.1). Ficam para uma futura 0.3.0, quando houver um provedor real em produção para medir contra.
-- Ferramentas de teste automatizado de prompts (prompt evals).
+- Ferramentas de teste automatizado de prompts (prompt evals) — segue fora de escopo; os critérios desta versão são de revisão manual, não automatizada.
 - Processo de aprovação formal com múltiplos aprovadores (quem assina, quando) — nesta fase, um único mantenedor aprova.
+- Critérios específicos para prompts multimodais (imagem/vídeo — Nano Banana, Veo) — o caso real que originou esta versão (`PR-0001`) é só texto; critérios de imagem/vídeo ficam para quando houver um Engine real desse tipo (mesma disciplina já aplicada aqui: não regular sem caso concreto).
 
-Diferente da 0.1.0 (que adiou tudo por falta de caso real), esta versão já incorpora o que o caso real (SPC-0004) permitiu aprender. O que ainda falta depende de uma decisão externa (provedor de IA), não de falta de caso de uso.
+Diferente da 0.2.0 (que ainda dependia de uma decisão externa pendente — qual provedor escolher), esta versão fecha o ciclo: há um provedor real, configurado, testado, com dados reais de custo e latência observados.
 
 ## 4. Conteúdo Principal
 
@@ -56,11 +57,14 @@ Arquivo Markdown (`.md`) com front-matter YAML contendo, no mínimo:
 ```yaml
 id: PR-NNNN
 title: <nome do prompt>
-target_model: <ex. Gemini, Nano Banana, Veo>
+target_model: <ex. Gemini 3.1 Flash-Lite, Nano Banana, Veo>
 objective: <objetivo do prompt em uma frase>
 version: 0.1.0
 status: Draft
+model_verified_at: <data em que target_model foi confirmado disponível — novo em 0.3.0>
 ```
+
+O campo `model_verified_at` existe porque provedores descontinuam modelos com pouco aviso — caso real: `PR-0001` foi escrito com `gemini-2.5-flash-lite`, e horas depois, no primeiro teste real, o modelo já não aceitava novos usuários. Revisar esse campo sempre que o prompt for reativado após um período parado.
 
 ### 4.4 Versionamento
 
@@ -94,7 +98,16 @@ O campo `status` do front-matter (4.3) passa a seguir um ciclo fechado:
 - [ ] Existe pelo menos um exemplo manual de entrada/saída (mesmo que a saída tenha sido escrita à mão, sem IA real, só para validar o formato).
 - [ ] Se o prompt depende de tom de voz de marca, o texto do prompt referencia `brand.tone_of_voice` explicitamente, não um tom fixo hardcoded.
 
-Critérios quantitativos (custo por chamada, latência, filtros de segurança de conteúdo) entram como uma seção adicional deste checklist somente quando o prompt avançar de `Ready` para `Active` — ou seja, quando houver um provedor real para medir contra (ver Não Escopo, seção 3).
+Critérios quantitativos (custo por chamada, latência, filtros de segurança de conteúdo) entram como uma seção adicional deste checklist somente quando o prompt avançar de `Ready` para `Active` — ver 4.8.
+
+### 4.8 Critérios quantitativos para `Active` (novo em 0.3.0)
+
+Baseado na integração real de `PR-0001` com Gemini 3.1 Flash-Lite:
+
+- **Custo de referência** — um prompt de copywriting típico (500–800 tokens de entrada, 300–500 de saída) no nível "Flash-Lite" custa entre US$ 0,0005 e US$ 0,001 por chamada. Se um novo prompt ultrapassar 10x essa referência por chamada (ex.: por usar um modelo "Pro" sem necessidade, ou por um contrato de saída longo demais), revisar o motivo antes de promover a `Active`.
+- **Latência de referência** — a chamada real observada levou poucos segundos (aceitável para uso síncrono numa UI de formulário, com estado de carregamento). Acima de ~10 segundos, considerar resposta assíncrona ou streaming em vez de bloquear a UI.
+- **Segurança de conteúdo** — todo prompt `Active` deve tratar explicitamente o caso de resposta vazia ou bloqueada pelo filtro de segurança do provedor. Nunca devolver uma string vazia silenciosa ao usuário quando o motivo real é um bloqueio de conteúdo — o erro precisa ser visível e diferenciável de "o modelo não teve nada a dizer".
+- **Tratamento de erro/indisponibilidade** — toda Server Action que chama um prompt `Active` deve capturar falhas de rede, limite de cota (HTTP 429) e indisponibilidade do provedor, devolvendo um erro tratável pela UI — nunca deixar a exceção subir sem tratamento até o usuário.
 
 ## 5. Dependências
 
@@ -106,12 +119,12 @@ Critérios quantitativos (custo por chamada, latência, filtros de segurança de
 
 ## 6. Critérios de Aprovação (desta versão do Standard)
 
-Permanece em Draft até `PR-0001` (SPC-0004) alcançar o status `Active` com um provedor de IA real configurado.
+Esta versão (0.3.0) já cobre um ciclo completo (local → formato → contrato → ciclo de vida → critérios quantitativos), validado ponta a ponta em `PR-0001`. Permanece em Draft até um **segundo** prompt real, de um Engine diferente, seguir este Standard sem exigir nova expansão — isso confirma que os critérios generalizam e não são um caso particular do Offer Engine. Só então avança para `1.0.0`.
 
 ## 7. Roadmap de evolução
 
-- **0.3.0** — quando um provedor de IA real for escolhido e configurado, adicionar critérios quantitativos de custo, latência e segurança, e formalizar a transição `Ready` → `Active`.
-- **1.0.0** — quando aprovado.
+- **1.0.0** — quando um segundo prompt real (de outro Engine, ex. Creative Engine) seguir este Standard sem necessidade de expansão.
+- Critérios para prompts multimodais (imagem/vídeo) ficam para quando houver um Engine real desse tipo (ver Não Escopo, seção 3) — não antes.
 
 ## 8. Histórico de Alterações
 
@@ -119,3 +132,4 @@ Permanece em Draft até `PR-0001` (SPC-0004) alcançar o status `Active` com um 
 |--------|------|-----------|-------|
 | 0.1.0 | 2026-07-10 | Primeira versão Draft — local, formato e metadados mínimos | Joaquim Mario Soares Coelho |
 | 0.2.0 | 2026-07-10 | Contrato de entrada/saída, ciclo de vida do prompt e checklist de revisão, a partir do caso real SPC-0004 (Offer Engine, PR-0001) | Claude |
+| 0.3.0 | 2026-07-10 | Critérios quantitativos de custo/latência/segurança, tratamento de erro e campo `model_verified_at`, a partir da integração real de PR-0001 com Gemini 3.1 Flash-Lite | Claude |

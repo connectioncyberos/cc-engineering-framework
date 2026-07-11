@@ -37,6 +37,12 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 
 - ROADMAP.md: DP-010 adicionado — escopo final do MVP decidido pelo usuário (Workspace+Products+Brands+Offer Engine com IA real, STD-0006, Product Constitution). Demais 8 módulos do CS-008+ ficam fora do escopo de "finalizar" por agora.
 
+## [Unreleased] - 2026-07-10 (5)
+
+### Added
+
+- STD-0007 expandido para 0.3.0: critérios quantitativos de custo/latência de referência, tratamento obrigatório de resposta vazia/bloqueada e de falha de rede/cota, campo `model_verified_at`. Baseado na integração real de `PR-0001` com Gemini 3.1 Flash-Lite.
+
 ## [0.1.0] - 2026-07-07
 
 ### Added

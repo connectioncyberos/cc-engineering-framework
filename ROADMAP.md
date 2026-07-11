@@ -146,16 +146,16 @@ Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Market
 
 ### Plano de ação (ordem de execução)
 
-1. Configurar provedor de IA real (Gemini API — free tier) e ligar ao `generateOfferCopy()` do Offer Engine.
-2. Testar geração real de oferta end-to-end.
-3. Promover `PR-0001` de `Ready` para `Active` (ciclo de vida do STD-0007).
-4. Expandir `STD-0007` para 0.3.0 com critérios quantitativos reais (custo, latência, segurança), usando a integração real como caso concreto.
+1. Configurar provedor de IA real (Gemini API — free tier) e ligar ao `generateOfferCopy()` do Offer Engine. — **Concluído**. Chave do Google AI Studio configurada, `@google/genai` instalado, `gemini-3.1-flash-lite` (o `gemini-2.5-flash-lite` inicialmente escolhido havia sido descontinuado para novos usuários — corrigido).
+2. Testar geração real de oferta end-to-end. — **Concluído**. Copy real gerada para "Galpão ConnectionCyber", tom de voz da marca respeitado, oferta salva com sucesso.
+3. Promover `PR-0001` de `Ready` para `Active` (ciclo de vida do STD-0007). — **Concluído**. Versão 0.2.1 do prompt.
+4. Expandir `STD-0007` para 0.3.0 com critérios quantitativos reais (custo, latência, segurança), usando a integração real como caso concreto. — **Concluído**. Adicionados: custo de referência (Gemini 3.1 Flash-Lite, US$ 0,25/US$ 1,50 por 1M tokens), latência de referência, tratamento obrigatório de resposta vazia/bloqueada e de falha de rede/cota, campo `model_verified_at`. Código de `generateOfferCopy()`/`generateOfferCopyAction()` atualizado para cumprir esses critérios.
 5. Escrever `STD-0006 — Engineering Principles` (dívida de DP-003, nunca escrita).
 6. Escrever o Product Constitution (dívida de DP-003, nunca escrita).
 7. Decidir com o usuário se testes automatizados e CI entram no escopo do MVP ou ficam de fora (hoje em Backlog, sem decisão).
 8. Consolidar um Release final do MVP (`releases/Release-000X.md`) marcando o fechamento desta fase.
 
-**Status:** In Progress — item 1 é o próximo passo.
+**Status:** In Progress — itens 1 a 4 concluídos; item 5 (STD-0006) é o próximo passo.
 
 ## Dependência cruzada
 
@@ -173,3 +173,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | DP-009 adicionado: SPC-0004 (Offer Engine) escrita, STD-0007 expandido para 0.2.0 |
 | 2026-07-10 | DP-007 adicionado: SPC-0002 (Products) escrita; prioridade de módulos CS-008+ decidida por dependência de schema |
 | 2026-07-10 | DP-010 adicionado: escopo final do MVP decidido pelo usuário (Workspace+Products+Brands+Offer Engine com IA real + STD-0006 + Product Constitution); demais 8 módulos ficam fora do escopo de "finalizar" |
+| 2026-07-10 | STD-0007 expandido para 0.3.0: critérios quantitativos reais (custo, latência, segurança) a partir da integração PR-0001/Gemini 3.1 Flash-Lite |
