@@ -134,6 +134,29 @@ Ordem definida por dependência de schema, verificada nas migrations reais (não
 
 **Status:** Done
 
+## DP-010 — Escopo final do MVP (decisão do usuário, 2026-07-10)
+
+**Objetivo:** definir o que significa "projeto finalizado" nesta fase, antes de continuar abrindo módulos novos.
+
+### Decisão
+
+MVP fechado = Workspace + Products + Brands + Offer Engine (já entregues, CS-007 a CS-010) **com um provedor de IA real ligado** ao Offer Engine, mais as duas dívidas de governança já registradas como Planned (`STD-0006`, Product Constitution).
+
+Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Marketplace, Email/WhatsApp, Publishing, Analytics, Quality Engine + Prompt Lab) ficam **fora do escopo de "finalizar"** nesta rodada — permanecem documentados no roadmap como próximas fases, sem Specification ainda.
+
+### Plano de ação (ordem de execução)
+
+1. Configurar provedor de IA real (Gemini API — free tier) e ligar ao `generateOfferCopy()` do Offer Engine.
+2. Testar geração real de oferta end-to-end.
+3. Promover `PR-0001` de `Ready` para `Active` (ciclo de vida do STD-0007).
+4. Expandir `STD-0007` para 0.3.0 com critérios quantitativos reais (custo, latência, segurança), usando a integração real como caso concreto.
+5. Escrever `STD-0006 — Engineering Principles` (dívida de DP-003, nunca escrita).
+6. Escrever o Product Constitution (dívida de DP-003, nunca escrita).
+7. Decidir com o usuário se testes automatizados e CI entram no escopo do MVP ou ficam de fora (hoje em Backlog, sem decisão).
+8. Consolidar um Release final do MVP (`releases/Release-000X.md`) marcando o fechamento desta fase.
+
+**Status:** In Progress — item 1 é o próximo passo.
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -149,3 +172,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | DP-008 adicionado: SPC-0003 (Brands) escrita, schema novo + migração aditiva em products |
 | 2026-07-10 | DP-009 adicionado: SPC-0004 (Offer Engine) escrita, STD-0007 expandido para 0.2.0 |
 | 2026-07-10 | DP-007 adicionado: SPC-0002 (Products) escrita; prioridade de módulos CS-008+ decidida por dependência de schema |
+| 2026-07-10 | DP-010 adicionado: escopo final do MVP decidido pelo usuário (Workspace+Products+Brands+Offer Engine com IA real + STD-0006 + Product Constitution); demais 8 módulos ficam fora do escopo de "finalizar" |

@@ -31,6 +31,12 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 - STD-0007 expandido para 0.2.0: contrato de entrada/saída, ciclo de vida do prompt, checklist de revisão.
 - ROADMAP.md: DP-009 adicionado.
 
+## [Unreleased] - 2026-07-10 (4)
+
+### Added
+
+- ROADMAP.md: DP-010 adicionado — escopo final do MVP decidido pelo usuário (Workspace+Products+Brands+Offer Engine com IA real, STD-0006, Product Constitution). Demais 8 módulos do CS-008+ ficam fora do escopo de "finalizar" por agora.
+
 ## [0.1.0] - 2026-07-07
 
 ### Added
