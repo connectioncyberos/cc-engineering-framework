@@ -152,10 +152,10 @@ Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Market
 4. Expandir `STD-0007` para 0.3.0 com critérios quantitativos reais (custo, latência, segurança), usando a integração real como caso concreto. — **Concluído**. Adicionados: custo de referência (Gemini 3.1 Flash-Lite, US$ 0,25/US$ 1,50 por 1M tokens), latência de referência, tratamento obrigatório de resposta vazia/bloqueada e de falha de rede/cota, campo `model_verified_at`. Código de `generateOfferCopy()`/`generateOfferCopyAction()` atualizado para cumprir esses critérios.
 5. Escrever `STD-0006 — Engineering Principles` (dívida de DP-003, nunca escrita). — **Concluído**. 12 princípios, cada um citando o caso real deste projeto que o originou.
 6. Escrever o Product Constitution (dívida de DP-003, nunca escrita). — **Concluído**. `FND-0004`, cobrindo propósito, público-alvo, não escopo permanente e 5 princípios não negociáveis do produto.
-7. Decidir com o usuário se testes automatizados e CI entram no escopo do MVP ou ficam de fora (hoje em Backlog, sem decisão).
-8. Consolidar um Release final do MVP (`releases/Release-000X.md`) marcando o fechamento desta fase.
+7. Decidir com o usuário se testes automatizados e CI entram no escopo do MVP ou ficam de fora (hoje em Backlog, sem decisão). — **Concluído**. Decisão do usuário: ficam para depois. Backlog consciente, não esquecimento — ver `cc-commerce-studio/ROADMAP.md`, seção Transversais.
+8. Consolidar um Release final do MVP (`releases/Release-000X.md`) marcando o fechamento desta fase. — **Concluído**. `releases/Release-0002.md`.
 
-**Status:** In Progress — itens 1 a 6 concluídos. Falta o item 7 (decidir com o usuário se testes automatizados/CI entram no MVP) e o item 8 (Release final consolidando o MVP).
+**Status:** Done — os 8 itens do plano de ação concluídos. MVP fechado: Workspace + Products + Brands + Offer Engine com IA real, STD-0006, FND-0004, decisão consciente sobre testes/CI, Release-0002 consolidado.
 
 ## Dependência cruzada
 
@@ -175,3 +175,6 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | DP-010 adicionado: escopo final do MVP decidido pelo usuário (Workspace+Products+Brands+Offer Engine com IA real + STD-0006 + Product Constitution); demais 8 módulos ficam fora do escopo de "finalizar" |
 | 2026-07-10 | STD-0007 expandido para 0.3.0: critérios quantitativos reais (custo, latência, segurança) a partir da integração PR-0001/Gemini 3.1 Flash-Lite |
 | 2026-07-10 | STD-0006 (Engineering Principles) escrito — dívida de DP-003 fechada; 12 princípios extraídos da execução real (DP-001 a DP-010) |
+| 2026-07-10 | FND-0004 (Product Constitution) escrito — dívida de DP-003 fechada |
+| 2026-07-10 | Decisão do usuário: testes automatizados/CI ficam fora do MVP (backlog consciente) |
+| 2026-07-10 | DP-010 fechado (Done); Release-0002 consolidado, MVP encerrado |

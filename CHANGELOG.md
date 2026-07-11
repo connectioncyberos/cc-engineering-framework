@@ -49,6 +49,11 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 
 - STD-0006 — Engineering Principles: 12 princípios prescritivos, cada um citando o caso real do projeto (DP-001 a DP-010) que o originou. Fecha a dívida registrada em DP-003.
 - FND-0004 — Product Constitution (ConnectionCyber Commerce Studio): propósito, público-alvo, não escopo permanente, 5 princípios não negociáveis do produto. Fecha a dívida registrada em DP-003.
+- `releases/Release-0002.md` — consolidação do fechamento do MVP (DP-003 conclusão, DP-005 a DP-010).
+
+### Decided
+
+- Testes automatizados e CI ficam fora do escopo do MVP — backlog consciente (DP-010, item 7).
 
 ## [0.1.0] - 2026-07-07
 
