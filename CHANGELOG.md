@@ -43,6 +43,12 @@ Todas as mudanças relevantes deste repositório serão registradas neste arquiv
 
 - STD-0007 expandido para 0.3.0: critérios quantitativos de custo/latência de referência, tratamento obrigatório de resposta vazia/bloqueada e de falha de rede/cota, campo `model_verified_at`. Baseado na integração real de `PR-0001` com Gemini 3.1 Flash-Lite.
 
+## [Unreleased] - 2026-07-10 (6)
+
+### Added
+
+- STD-0006 — Engineering Principles: 12 princípios prescritivos, cada um citando o caso real do projeto (DP-001 a DP-010) que o originou. Fecha a dívida registrada em DP-003.
+
 ## [0.1.0] - 2026-07-07
 
 ### Added

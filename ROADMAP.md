@@ -50,7 +50,7 @@ O plano original previa FND-0001 Project Charter, FND-0002 Engineering Bible, FN
 - Product Constitution — **Planned**
 - Engineering Handbook — **Planned** (a escrever por ondas — só capítulos com conteúdo real agora: Introdução, Filosofia, Specifications, ADR, Versionamento. História/Evolução/Roadmap ficam como stub até haver o que registrar)
 - ~~Engineering Bible~~ — descontinuado, ver DP-003.1
-- STD-0006 — Engineering Principles — **Planned** (substitui o que seria parte da Bible)
+- STD-0006 — Engineering Principles — **Done** (ver DP-010, item 5). 12 princípios extraídos da execução real do projeto (DP-001 a DP-010).
 
 ### DP-003.1 — Resolução: Handbook vs. Bible vs. Principles (2026-07-09)
 
@@ -150,12 +150,12 @@ Os 8 módulos restantes do CS-008+ (Landing Page, Creative, Video Script, Market
 2. Testar geração real de oferta end-to-end. — **Concluído**. Copy real gerada para "Galpão ConnectionCyber", tom de voz da marca respeitado, oferta salva com sucesso.
 3. Promover `PR-0001` de `Ready` para `Active` (ciclo de vida do STD-0007). — **Concluído**. Versão 0.2.1 do prompt.
 4. Expandir `STD-0007` para 0.3.0 com critérios quantitativos reais (custo, latência, segurança), usando a integração real como caso concreto. — **Concluído**. Adicionados: custo de referência (Gemini 3.1 Flash-Lite, US$ 0,25/US$ 1,50 por 1M tokens), latência de referência, tratamento obrigatório de resposta vazia/bloqueada e de falha de rede/cota, campo `model_verified_at`. Código de `generateOfferCopy()`/`generateOfferCopyAction()` atualizado para cumprir esses critérios.
-5. Escrever `STD-0006 — Engineering Principles` (dívida de DP-003, nunca escrita).
+5. Escrever `STD-0006 — Engineering Principles` (dívida de DP-003, nunca escrita). — **Concluído**. 12 princípios, cada um citando o caso real deste projeto que o originou.
 6. Escrever o Product Constitution (dívida de DP-003, nunca escrita).
 7. Decidir com o usuário se testes automatizados e CI entram no escopo do MVP ou ficam de fora (hoje em Backlog, sem decisão).
 8. Consolidar um Release final do MVP (`releases/Release-000X.md`) marcando o fechamento desta fase.
 
-**Status:** In Progress — itens 1 a 4 concluídos; item 5 (STD-0006) é o próximo passo.
+**Status:** In Progress — itens 1 a 5 concluídos; item 6 (Product Constitution) é o próximo passo.
 
 ## Dependência cruzada
 
@@ -174,3 +174,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | DP-007 adicionado: SPC-0002 (Products) escrita; prioridade de módulos CS-008+ decidida por dependência de schema |
 | 2026-07-10 | DP-010 adicionado: escopo final do MVP decidido pelo usuário (Workspace+Products+Brands+Offer Engine com IA real + STD-0006 + Product Constitution); demais 8 módulos ficam fora do escopo de "finalizar" |
 | 2026-07-10 | STD-0007 expandido para 0.3.0: critérios quantitativos reais (custo, latência, segurança) a partir da integração PR-0001/Gemini 3.1 Flash-Lite |
+| 2026-07-10 | STD-0006 (Engineering Principles) escrito — dívida de DP-003 fechada; 12 princípios extraídos da execução real (DP-001 a DP-010) |
