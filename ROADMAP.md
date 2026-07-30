@@ -183,6 +183,70 @@ Critério proposto por Claude e escolhido pelo usuário: priorizar módulos que 
 
 **Status:** Done
 
+## DP-013 — Escopo real do Creative Engine (decisão de arquitetura e custo)
+
+**Objetivo:** auditar e decidir o escopo técnico real do Creative Engine (CS-013), a partir do fluxo manual que o usuário já usa hoje (referências de imagem + descrição → imagens de criativo → vídeo).
+
+### Achados da auditoria (pesquisa real, 2026-07-11)
+
+- **Geração de imagem** — modelos "Nano Banana" (`gemini-3.1-flash-image`) e "Nano Banana Pro" (`gemini-3-pro-image-preview`) usam a **Interactions API** (`ai.interactions.create()`), não a `generateContent()` já usada em PR-0001/PR-0002. Nano Banana Pro aceita até 14 imagens de referência — cobre o caso de uso real do usuário. Custo: US$ 0,034–US$ 0,134 por imagem (sem tier gratuito).
+- **Geração de vídeo** — modelo Veo 3.1 (`veo-3.1-generate-preview`) usa `ai.models.generateVideos()`, que retorna uma operação assíncrona de longa duração (o próprio exemplo oficial faz polling a cada 10s até `operation.done`). Custo: US$ 0,03–US$ 0,60 por segundo de vídeo.
+- **Implicação arquitetural real** — geração de vídeo não cabe numa Server Action síncrona única (o polling do exemplo oficial já passa de 10s, um vídeo real pode levar minutos). É preciso desenho assíncrono: guardar o `operation` e um campo de status na tabela, e o cliente chamar uma Server Action de "verificar status" repetidamente (poll), em vez de bloquear uma única chamada — diferente do padrão síncrono usado em Offer Engine/Video Script Engine.
+- **Achado bloqueante** — nem geração de imagem nem de vídeo têm tier gratuito (diferente do texto usado até agora). É necessário habilitar billing na conta Google AI Studio/Vertex antes de qualquer teste real. `@google/genai` instalado é `^2.11.0`; precisa ser auditado/atualizado para confirmar suporte à Interactions API e a `generateVideos()`.
+
+### Decisão do usuário (2026-07-11)
+
+Escopo completo agora: imagem (com referências) + vídeo a partir das imagens, replicando o fluxo manual já usado — não uma versão reduzida só de imagem.
+
+### Entregáveis
+
+- SPC-0007 — Creative Engine (CS-013) — em andamento.
+
+**Status:** In Progress
+
+## DP-014 — Escopo real do Billing/Subscription Engine (achado antecipado, execução adiada)
+
+**Objetivo:** registrar a análise real de um mecanismo de cobrança recorrente para o Commerce Studio, feita a partir de um ativo já validado em produção em outro projeto (VaultMindOS), para não perder o achado — a execução fica para depois do Creative Engine (CS-013), por decisão do usuário.
+
+### Achado (2026-07-11) — ativo reaproveitável real
+
+O repositório `vaultmindos` (connectioncyberos) tem uma integração Mercado Pago **Checkout Pro** validada em sandbox: `fetch` nativo (sem SDK), cria uma "preferência" via `POST /checkout/preferences`, redireciona o comprador para a página hospedada do Mercado Pago, e nunca confia no status vindo do webhook ou da query string — sempre reconsulta `GET /v1/payments/{id}` antes de liberar acesso. RLS: usuário só insere e lê o próprio registro; só a service role (fora de qualquer Server Action disparada por usuário) atualiza o status.
+
+### O que se aplica direto ao Commerce Studio (sem mudança)
+
+Os quatro princípios de segurança: reconsulta obrigatória do status real antes de liberar algo; service role isolada só no reconciliador; RLS sem policy de update para o usuário; registro em audit log só quando o status muda de fato.
+
+### O que muda (Commerce Studio cobra assinatura recorrente, não produto único)
+
+O VaultMindOS cobra uma vez (`Checkout Pro`, `createPreference`). O Commerce Studio precisa de **Assinaturas** do Mercado Pago (endpoint `/preapproval`, não `/checkout/preferences`), com vocabulário de status próprio (`authorized`/`paused`/`cancelled`/`pending`, não `PENDING`/`APPROVED`/`REJECTED`/`CANCELLED`) e tipo de evento de webhook diferente (`subscription_preapproval`, não `payment`). A tabela `payments` vinculada a `user_id`/`course_id` vira `subscriptions` vinculada a `workspace_id` (cobrança por tenant, não por usuário individual — mesmo isolamento multi-tenant já usado em todo o resto do produto). Faltam ainda duas peças novas que o VaultMindOS não precisa: uma tabela `plans` (tiers e limites de uso) e uma medição de uso por Workspace por ciclo de cobrança, para aplicar o limite do plano.
+
+### Decisões do usuário (2026-07-11)
+
+- **Prioridade:** terminar o Creative Engine (CS-013) primeiro; Billing/Subscription Engine fica para depois.
+- **Conta Mercado Pago:** o Commerce Studio usa uma aplicação/conta separada da do VaultMindOS — isolamento completo de credenciais entre os dois produtos.
+
+**Status:** Backlog (achado documentado, execução adiada por decisão do usuário — não é dívida esquecida)
+
+## DP-015 — Auditoria arquitetural completa e Playbook de melhoria contínua
+
+**Objetivo:** auditar `cc-commerce-studio` de ponta a ponta (arquitetura, requisitos, documentação, código, segurança, observabilidade, governança) e transformar os achados num programa executável e mensurável, não só num relatório.
+
+### Achados reais (auditoria 2026-07-11)
+
+- Tabelas `projects`/`assets` existem no schema (migração 001) sem nenhum módulo de feature correspondente; o link "Assets" no Sidebar do produto aponta para uma rota inexistente (404 real).
+- Zero CI (`.github/` só tem `PULL_REQUEST_TEMPLATE.md`), zero teste automatizado (`tests/` só tem `.gitkeep`), zero observabilidade estruturada (só `console.error`).
+- RLS é a única camada de autorização multi-tenant e não tem nenhum teste automatizado validando isolamento entre Workspaces.
+- Fallback silencioso de env var ausente (`placeholder.supabase.co`) no middleware do Supabase, em vez de falha explícita.
+- Cada Engine de IA duplica seu próprio tratamento de erro de provedor — risco de triplicar a mesma lógica quando o Creative Engine for construído.
+- Governança (Standards, Specifications, Roadmaps reconciliados) está muito acima da maturidade técnica de produção — ponto forte real, não um problema.
+
+### Entregáveis
+
+- `Auditoria-Arquitetural-ConnectionCyber-Commerce-Studio-2026-07-11.md` — relatório completo nos 8 blocos solicitados pelo usuário, entregue como arquivo.
+- `PBK-0001` — Quality & Technical Debt Improvement Playbook: decisões justificadas com trade-off, plano de ação em 4 fases (Imediato/Curto/Médio/Longo prazo) com Definition of Done por item, modelo de métricas com baseline e meta, e ritual de governança que reaproveita o próprio ciclo de fechamento de Delivery Package do ROADMAP (sem processo novo).
+
+**Status:** In Progress — auditoria e Playbook entregues; execução das fases (0 a 3) ainda não iniciada.
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -207,3 +271,6 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-10 | DP-011 adicionado: SPC-0005 (Landing Page Engine) escrita, retomando os módulos fora do MVP |
 | 2026-07-11 | DP-012 adicionado: ordem de retomada decidida pelo usuário (Video Script Engine → Creative Engine → Analytics Engine); SPC-0006 (Video Script Engine) escrita |
 | 2026-07-11 | DP-012 fechado (Done): CS-012 testado end-to-end; STD-0007 promovido de 0.3.0 (Draft) para 1.0.0 (Approved) |
+| 2026-07-11 | DP-013 adicionado: escopo real do Creative Engine auditado (Interactions API para imagem, geração de vídeo assíncrona via Veo, custos reais sem tier gratuito); usuário decidiu escopo completo (imagem + vídeo) |
+| 2026-07-11 | DP-014 adicionado: análise do ativo Mercado Pago do VaultMindOS para um futuro Billing/Subscription Engine; execução adiada (Creative Engine primeiro), conta Mercado Pago será separada |
+| 2026-07-11 | DP-015 adicionado: auditoria arquitetural completa do cc-commerce-studio entregue, e PBK-0001 (Quality & Technical Debt Improvement Playbook) escrito com plano de ação faseado e métricas mensuráveis |
