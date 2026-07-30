@@ -45,7 +45,7 @@ Não cobre a construção de novas features de produto (Creative Engine, Billing
 
 | Item | Ação | Definition of Done | Métrica |
 |---|---|---|---|
-| D1 | Criar `.github/workflows/ci.yml` rodando `npm run typecheck` e `npm run build` | **Feito.** Workflow criado em `cc-commerce-studio/.github/workflows/ci.yml`; falta confirmar o primeiro push real para ver o status verde. | `CI status`: de "não existe" para "workflow criado, aguardando primeiro push" |
+| D1 | Criar `.github/workflows/ci.yml` rodando `npm run typecheck` e `npm run build` | **Feito e confirmado.** Workflow criado em `cc-commerce-studio/.github/workflows/ci.yml`; primeiro run real (commit `0a3585a`) passou verde em 55s. | `CI status`: de "não existe" para "verde no primeiro push real" |
 | D2 | Decidir destino de `projects`/`assets` e corrigir o Sidebar | **Feito.** Um segundo link quebrado foi encontrado durante a execução (não capturado na auditoria original): "Dashboard" (`/dashboard`) também não existia — o login redireciona para `/workspace`. Ambos os itens ("Dashboard" e "Assets") foram removidos do Sidebar. Decisão sobre as tabelas: manter no schema sem remoção destrutiva, documentado aqui e no DP-015 — não construir os módulos agora, sem apagar dado/estrutura. | `Links quebrados no Sidebar`: de 2 (não 1 — achado corrigido) para 0 |
 
 **Fase 1 — Curto prazo (antes do Creative Engine)**
@@ -75,7 +75,7 @@ Métricas de baseline (capturadas na auditoria de 2026-07-11) e meta:
 
 | Métrica | Baseline (2026-07-11) | Estado atual (2026-07-11, pós-Fase 0) | Meta | Onde é observada |
 |---|---|---|---|---|
-| CI status por push | Não existe | Workflow criado, aguardando confirmação do primeiro push verde | 100% dos pushes com `tsc --noEmit` + `next build` verdes antes de merge | GitHub Actions |
+| CI status por push | Não existe | Confirmado verde no primeiro push real (commit `0a3585a`, 55s) | 100% dos pushes com `tsc --noEmit` + `next build` verdes antes de merge | GitHub Actions |
 | Links quebrados no Sidebar | 2 (`/assets` e `/dashboard` — o segundo só foi encontrado durante a execução da Fase 0, não estava na auditoria original) | 0 | 0 | Revisão manual a cada módulo novo (checklist de Specification) |
 | Tabelas com schema órfão (sem feature ou decisão explícita) | 2 (`projects`, `assets`) | 0 | Comparação migração ↔ `features/` a cada Specification |
 | Cobertura de teste de isolamento de RLS | 0/6 tabelas | 6/6 hoje, +1 a cada tabela nova | Suíte de testes (Vitest) |
@@ -95,7 +95,7 @@ Este Playbook não cria um processo novo de acompanhamento — reaproveita o que
 
 ## 6. Critérios de Aprovação
 
-- [x] Fase 0 concluída (2026-07-11): CI criado (falta confirmar primeiro push verde), nenhum link quebrado no Sidebar (2 encontrados e corrigidos, não 1).
+- [x] Fase 0 concluída e confirmada (2026-07-11): CI verde no primeiro push real (`0a3585a`, 55s), nenhum link quebrado no Sidebar (2 encontrados e corrigidos, não 1).
 - [ ] Fase 1 concluída: cliente de IA compartilhado em uso pelos dois Engines existentes; falha explícita de env var.
 - [ ] Fase 2 concluída: 100% das tabelas com RLS cobertas por teste de isolamento; log estruturado em Server Actions críticas.
 - [ ] Tabela de métricas da seção 4.3 revisada e atualizada a cada fechamento de Delivery Package no ROADMAP.

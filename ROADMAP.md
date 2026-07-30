@@ -245,7 +245,7 @@ O VaultMindOS cobra uma vez (`Checkout Pro`, `createPreference`). O Commerce Stu
 - `Auditoria-Arquitetural-ConnectionCyber-Commerce-Studio-2026-07-11.md` — relatório completo nos 8 blocos solicitados pelo usuário, entregue como arquivo.
 - `PBK-0001` — Quality & Technical Debt Improvement Playbook: decisões justificadas com trade-off, plano de ação em 4 fases (Imediato/Curto/Médio/Longo prazo) com Definition of Done por item, modelo de métricas com baseline e meta, e ritual de governança que reaproveita o próprio ciclo de fechamento de Delivery Package do ROADMAP (sem processo novo).
 
-**Status:** In Progress — auditoria e Playbook entregues; Fase 0 do PBK-0001 concluída (2026-07-11): CI criado, 2 links quebrados corrigidos no Sidebar. Fases 1 a 3 ainda não iniciadas.
+**Status:** In Progress — auditoria e Playbook entregues; Fase 0 do PBK-0001 concluída e confirmada (2026-07-11): CI verde no primeiro push real (`0a3585a`), 2 links quebrados corrigidos no Sidebar. Fases 1 a 3 ainda não iniciadas.
 
 ## Dependência cruzada
 
@@ -275,3 +275,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-11 | DP-014 adicionado: análise do ativo Mercado Pago do VaultMindOS para um futuro Billing/Subscription Engine; execução adiada (Creative Engine primeiro), conta Mercado Pago será separada |
 | 2026-07-11 | DP-015 adicionado: auditoria arquitetural completa do cc-commerce-studio entregue, e PBK-0001 (Quality & Technical Debt Improvement Playbook) escrito com plano de ação faseado e métricas mensuráveis |
 | 2026-07-11 | DP-015: Fase 0 do PBK-0001 executada — CI criado em cc-commerce-studio; 2 links quebrados no Sidebar corrigidos (não 1 — "Dashboard" encontrado durante a execução, corrigindo a auditoria original) |
+| 2026-07-11 | DP-015: Fase 0 confirmada — primeiro run do CI passou verde (commit `0a3585a`, 55s), verificado em github.com/connectioncyberos/cc-commerce-studio/actions |
