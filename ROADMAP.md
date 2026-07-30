@@ -233,7 +233,7 @@ O VaultMindOS cobra uma vez (`Checkout Pro`, `createPreference`). O Commerce Stu
 
 ### Achados reais (auditoria 2026-07-11)
 
-- Tabelas `projects`/`assets` existem no schema (migração 001) sem nenhum módulo de feature correspondente; o link "Assets" no Sidebar do produto aponta para uma rota inexistente (404 real).
+- Tabelas `projects`/`assets` existem no schema (migração 001) sem nenhum módulo de feature correspondente; o link "Assets" no Sidebar do produto aponta para uma rota inexistente (404 real). **Correção (2026-07-11, execução da Fase 0 do PBK-0001):** durante a execução, um segundo link quebrado foi encontrado — "Dashboard" (`/dashboard`) também não existia (o login redireciona para `/workspace`). Eram 2 links quebrados, não 1. Ambos removidos do Sidebar; tabelas mantidas no schema sem remoção destrutiva.
 - Zero CI (`.github/` só tem `PULL_REQUEST_TEMPLATE.md`), zero teste automatizado (`tests/` só tem `.gitkeep`), zero observabilidade estruturada (só `console.error`).
 - RLS é a única camada de autorização multi-tenant e não tem nenhum teste automatizado validando isolamento entre Workspaces.
 - Fallback silencioso de env var ausente (`placeholder.supabase.co`) no middleware do Supabase, em vez de falha explícita.
@@ -245,7 +245,7 @@ O VaultMindOS cobra uma vez (`Checkout Pro`, `createPreference`). O Commerce Stu
 - `Auditoria-Arquitetural-ConnectionCyber-Commerce-Studio-2026-07-11.md` — relatório completo nos 8 blocos solicitados pelo usuário, entregue como arquivo.
 - `PBK-0001` — Quality & Technical Debt Improvement Playbook: decisões justificadas com trade-off, plano de ação em 4 fases (Imediato/Curto/Médio/Longo prazo) com Definition of Done por item, modelo de métricas com baseline e meta, e ritual de governança que reaproveita o próprio ciclo de fechamento de Delivery Package do ROADMAP (sem processo novo).
 
-**Status:** In Progress — auditoria e Playbook entregues; execução das fases (0 a 3) ainda não iniciada.
+**Status:** In Progress — auditoria e Playbook entregues; Fase 0 do PBK-0001 concluída (2026-07-11): CI criado, 2 links quebrados corrigidos no Sidebar. Fases 1 a 3 ainda não iniciadas.
 
 ## Dependência cruzada
 
@@ -274,3 +274,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-11 | DP-013 adicionado: escopo real do Creative Engine auditado (Interactions API para imagem, geração de vídeo assíncrona via Veo, custos reais sem tier gratuito); usuário decidiu escopo completo (imagem + vídeo) |
 | 2026-07-11 | DP-014 adicionado: análise do ativo Mercado Pago do VaultMindOS para um futuro Billing/Subscription Engine; execução adiada (Creative Engine primeiro), conta Mercado Pago será separada |
 | 2026-07-11 | DP-015 adicionado: auditoria arquitetural completa do cc-commerce-studio entregue, e PBK-0001 (Quality & Technical Debt Improvement Playbook) escrito com plano de ação faseado e métricas mensuráveis |
+| 2026-07-11 | DP-015: Fase 0 do PBK-0001 executada — CI criado em cc-commerce-studio; 2 links quebrados no Sidebar corrigidos (não 1 — "Dashboard" encontrado durante a execução, corrigindo a auditoria original) |
