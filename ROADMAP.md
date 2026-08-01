@@ -247,6 +247,33 @@ O VaultMindOS cobra uma vez (`Checkout Pro`, `createPreference`). O Commerce Stu
 
 **Status:** In Progress — auditoria e Playbook entregues; Fase 0 do PBK-0001 concluída e confirmada (2026-07-11): CI verde no primeiro push real (`0a3585a`), 2 links quebrados corrigidos no Sidebar. Fases 1 a 3 ainda não iniciadas.
 
+## DP-016 — MPI (Marketing e Posicionamento na Internet) incorporado ao Commerce Studio
+
+**Objetivo:** decidir se a plataforma MPI, desenhada inicialmente como projeto separado (`C:\Projetos\mpi\cyber-mpi-os`), deveria ser construída ali ou trazida para dentro do Commerce Studio — e, em caso afirmativo, mapear como.
+
+### Contexto
+
+Durante a auditoria da pasta `mpi` (2026-08-01), corrigiu-se uma leitura inicial equivocada: `cyber-mpi-os` não era um scaffold vazio — já tinha login, dashboard, `proxy.ts` e uma migração real de 8 tabelas aplicada em produção (projeto Supabase `jlaeccldvbxnwrcysrwg`), mas com RLS habilitado sem nenhuma policy (bloqueando toda leitura real) e todo o trabalho sem commit. Esses dois riscos foram corrigidos diretamente no `cyber-mpi-os` (policies de RLS aplicadas via migration, código commitado e enviado ao GitHub) antes de qualquer decisão de arquitetura, por segurança.
+
+O usuário então decidiu: o MPI não continua como projeto separado — toda a tecnologia planejada para ele passa a ser construída dentro do Commerce Studio.
+
+### Achados do mapeamento (2026-08-01)
+
+O modelo de tenant do MPI (`clients`/`users` próprios) é redundante com `workspaces`/`workspace_members` + RLS, já provado em 6 tabelas do Commerce Studio — não será recriado. Dos pilares do MPI: Conteúdo e Posicionamento já são cobertos por Offer Engine, Landing Page Engine, Video Script Engine (prontos) e Creative Engine (CS-013, em andamento); Automação/CRM e Relatórios/Métricas já existiam no roadmap do Commerce Studio como Email/WhatsApp Engine e Analytics Engine (planejados, sem Specification); Assinaturas já foi analisado em DP-014 (Mercado Pago Assinaturas, execução adiada). Restam dois módulos sem equivalente hoje: Diagnóstico Digital (sem dependência externa) e Tráfego Pago (exige conta/API de anúncios nova). Python, proposto no desenho original do MPI, não será adotado — todo o processamento segue em TypeScript/Server Actions, mesmo padrão já usado em todos os Engines.
+
+### Decisões do usuário (2026-08-01)
+
+- **Identidade de produto:** o MPI vira uma seção/marca própria dentro do Commerce Studio, agrupando os Engines relacionados, mantendo o posicionamento comercial original (planos Essencial/Profissional/Premium).
+- **Ordem de construção:** Diagnóstico Digital Engine entra antes ou em paralelo ao Creative Engine (CS-013) — mesmo critério de DP-012 (priorizar o que não depende de conta/API externa nova). Tráfego Pago Engine, por depender de Meta/Google Ads, fica junto dos demais módulos que já esperavam conta/API externa nova (Marketplace Engine, Publishing Engine) — ordem entre eles ainda não decidida.
+- **Schema:** a Specification do Diagnóstico Digital Engine deve auditar as tabelas órfãs `projects`/`assets` (migração 001, ver DP-015) e reaproveitá-las como o "projeto/ciclo MPI" de cada workspace, em vez de criar schema novo do zero.
+
+### Entregáveis
+
+- Este registro de decisão — **Done**.
+- SPC-0008 — Diagnóstico Digital Engine — próximo passo, a escrever antes de qualquer código.
+
+**Status:** Decidido — execução começa pela Specification do Diagnóstico Digital Engine (SPC-0008).
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -276,3 +303,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-11 | DP-015 adicionado: auditoria arquitetural completa do cc-commerce-studio entregue, e PBK-0001 (Quality & Technical Debt Improvement Playbook) escrito com plano de ação faseado e métricas mensuráveis |
 | 2026-07-11 | DP-015: Fase 0 do PBK-0001 executada — CI criado em cc-commerce-studio; 2 links quebrados no Sidebar corrigidos (não 1 — "Dashboard" encontrado durante a execução, corrigindo a auditoria original) |
 | 2026-07-11 | DP-015: Fase 0 confirmada — primeiro run do CI passou verde (commit `0a3585a`, 55s), verificado em github.com/connectioncyberos/cc-commerce-studio/actions |
+| 2026-08-01 | DP-016 adicionado: MPI incorporado ao Commerce Studio (projeto separado `mpi/cyber-mpi-os` descontinuado como caminho de construção); mapeamento dos pilares do MPI para Engines existentes/planejados; decisões de identidade de produto, ordem de construção e reaproveitamento de `projects`/`assets` |
