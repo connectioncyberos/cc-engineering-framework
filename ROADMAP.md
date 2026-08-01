@@ -274,6 +274,16 @@ O modelo de tenant do MPI (`clients`/`users` próprios) é redundante com `works
 
 **Status:** Decidido — execução começa pela Specification do Diagnóstico Digital Engine (SPC-0008).
 
+## DP-017 — Specification do Diagnóstico Digital Engine (CS-014)
+
+**Objetivo:** especificar o primeiro módulo novo do MPI dentro do Commerce Studio (DP-016), auditando `projects`/`assets` antes de propor qualquer tabela — por decisão explícita do usuário.
+
+### Entregáveis
+
+- SPC-0008 — Diagnóstico Digital Engine (CS-014) — **Done**. Auditoria confirmou `projects` reaproveitável sem risco (RLS já aplicada desde a migração 002, nenhuma feature usa a tabela hoje) e `assets` fora de escopo por dependência real (exige o bucket de Storage que o Creative Engine ainda vai criar), não por preferência. Alteração aditiva proposta em `projects.status` (adicionar `check`, alinhando com o padrão dos módulos mais recentes).
+
+**Status:** Done — próximo passo é a implementação (código + migração).
+
 ## Dependência cruzada
 
 O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-studio/ROADMAP.md`. Este arquivo cobre apenas o Engineering Framework.
@@ -304,3 +314,4 @@ O roadmap de produto (Commerce Studio) é mantido separadamente em `cc-commerce-
 | 2026-07-11 | DP-015: Fase 0 do PBK-0001 executada — CI criado em cc-commerce-studio; 2 links quebrados no Sidebar corrigidos (não 1 — "Dashboard" encontrado durante a execução, corrigindo a auditoria original) |
 | 2026-07-11 | DP-015: Fase 0 confirmada — primeiro run do CI passou verde (commit `0a3585a`, 55s), verificado em github.com/connectioncyberos/cc-commerce-studio/actions |
 | 2026-08-01 | DP-016 adicionado: MPI incorporado ao Commerce Studio (projeto separado `mpi/cyber-mpi-os` descontinuado como caminho de construção); mapeamento dos pilares do MPI para Engines existentes/planejados; decisões de identidade de produto, ordem de construção e reaproveitamento de `projects`/`assets` |
+| 2026-08-01 | DP-017 adicionado: SPC-0008 (Diagnóstico Digital Engine, CS-014) escrita — `projects` confirmado reaproveitável sem risco, `assets` adiado por dependência real de Storage (não preferência) |
